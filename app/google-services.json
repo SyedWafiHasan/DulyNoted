@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "615122831593",
+    "firebase_url": "https://dulynoted-7a1fd.firebaseio.com",
+    "project_id": "dulynoted-7a1fd",
+    "storage_bucket": "dulynoted-7a1fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615122831593:android:fbe77cecb7a67f6d",
+        "android_client_info": {
+          "package_name": "com.wafihasan.dulynoted"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615122831593-vok3keen8tk51n1349kdohmd1u2l71dv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wafihasan.dulynoted",
+            "certificate_hash": "72be284693191502e26818dd9dbc06baa38b413d"
+          }
+        },
+        {
+          "client_id": "615122831593-k4or3puraoeal3ra81slkvduq0erel3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkyiOP1nt066O2VP6OU2afOjSEqtr80a0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615122831593-k4or3puraoeal3ra81slkvduq0erel3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

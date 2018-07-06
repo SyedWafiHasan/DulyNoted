@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/app_name">
+<SwitchPreference
+    android:title="Check"
+    android:defaultValue="false"
+    android:summary="Testing">
+</SwitchPreference>
+    </PreferenceCategory>
+</PreferenceScreen>
