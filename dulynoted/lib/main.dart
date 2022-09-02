@@ -1,3 +1,4 @@
+import 'package:dulynoted/views/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,7 +13,8 @@ void main()
     theme: ThemeData(
       primarySwatch: Colors.teal,
     ),
-    home: const RegisterView(),
+    // home: const RegisterView(),
+    home: const LoginView(),
   ));
 }
 
@@ -94,7 +96,9 @@ class _RegisterViewState extends State<RegisterView>
                         // if a Future is returned, you need to use await to get the result
                         final userAuth = await FirebaseAuth.instance
                             .createUserWithEmailAndPassword(
-                            email: email, password: password);
+                            email: email,
+                            password: password
+                        );
 
                         print(userAuth);
                       },
