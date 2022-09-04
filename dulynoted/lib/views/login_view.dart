@@ -95,6 +95,7 @@ class _LoginViewState extends State<LoginView> {
                 return const Text("Loading...");
             }
           },
-        ));
+        )
+    );
   }
 }
