@@ -66,7 +66,7 @@ class _LoginViewState extends State<LoginView> {
                         hintText: "Password",
                       ),
                     ),
-                    TextButton(
+                    ElevatedButton(
                       onPressed: () async {
                         final email = _email.text;
                         final password = _password.text;
@@ -82,6 +82,8 @@ class _LoginViewState extends State<LoginView> {
                             print("User Not Found");
                           } else if (e.code == 'wrong-password') {
                             print("Password Incorrect");
+                          } else if (e.code == 'user-disabled'){
+                            print("Sorry, this user has been disabled.");
                           } else {
                             print("Something else happened : ${e.code}");
                           }

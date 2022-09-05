@@ -69,7 +69,7 @@ class _RegisterViewState extends State<RegisterView> {
                         hintText: "Password",
                       ),
                     ),
-                    TextButton(
+                    ElevatedButton(
                       onPressed: () async {
                         final email = _email.text;
                         final password = _password.text;
