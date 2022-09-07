@@ -30,9 +30,9 @@ class Homepage extends StatelessWidget {
         print(user?.emailVerified);
         if (emailVerified) {
           return const Text("Done");
-        return const Homepage();
-        return const LoginView();
-        return const RegisterView();
+        // return const Homepage();
+        // return const LoginView();
+        // return const RegisterView();
         } else {
           return const VerifyEmailView(); // passing fragment instead of activity
         }
