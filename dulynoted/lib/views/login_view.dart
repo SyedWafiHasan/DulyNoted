@@ -31,56 +31,64 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          controller: _email,
-          autocorrect: false,
-          enableSuggestions: false,
-          keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            hintText: "Email",
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Login"),
+      ),
+      body: Column(
+        children: [
+          TextField(
+            controller: _email,
+            autocorrect: false,
+            enableSuggestions: false,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(
+              hintText: "Email",
+            ),
           ),
-        ),
-        TextField(
-          controller: _password,
-          obscureText: true,
-          autocorrect: false,
-          enableSuggestions: false,
-          decoration: const InputDecoration(
-            hintText: "Password",
+          TextField(
+            controller: _password,
+            obscureText: true,
+            autocorrect: false,
+            enableSuggestions: false,
+            decoration: const InputDecoration(
+              hintText: "Password",
+            ),
           ),
-        ),
-        ElevatedButton(
-          onPressed: () async {
-            final email = _email.text;
-            final password = _password.text;
+          ElevatedButton(
+            onPressed: () async {
+              final email = _email.text;
+              final password = _password.text;
 
-            try // try block to handle exception if user does not exist
-            {
-              // if a Future is returned, you need to use await to get the result
-              final userAuth = await FirebaseAuth.instance
-                  .signInWithEmailAndPassword(email: email, password: password);
-            } on FirebaseAuthException catch (e) {
-              if (e.code == 'user-not-found') {
-                print("User Not Found");
-              } else if (e.code == 'wrong-password') {
-                print("Password Incorrect");
-              } else if (e.code == 'user-disabled') {
-                print("Sorry, this user has been disabled.");
-              } else {
-                print("Something else happened : ${e.code}");
+              try // try block to handle exception if user does not exist
+              {
+                // if a Future is returned, you need to use await to get the result
+                final userAuth = await FirebaseAuth.instance
+                    .signInWithEmailAndPassword(email: email, password: password);
+              } on FirebaseAuthException catch (e) {
+                if (e.code == 'user-not-found') {
+                  print("User Not Found");
+                } else if (e.code == 'wrong-password') {
+                  print("Password Incorrect");
+                } else if (e.code == 'user-disabled') {
+                  print("Sorry, this user has been disabled.");
+                } else {
+                  print("Something else happened : ${e.code}");
+                }
               }
-            }
-          },
-          child: const Text("Login"),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            print("Button daba diye? Nahi dabana tha");
-          },
-          child: Text("Go to other page"))
-      ],
+            },
+            child: const Text("Login"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                '/register/',
+                (route) => false,
+              );
+            },
+            child: const Text("Register a new user"))
+        ],
+      ),
     );
   }
 }
