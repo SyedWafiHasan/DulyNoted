@@ -29,10 +29,25 @@ class Homepage extends StatelessWidget {
         print(emailVerified);
         print(user?.emailVerified);
         if (emailVerified) {
-          return const Text("Done");
+          // return const Text("Done");
         // return const Homepage();
         // return const LoginView();
         // return const RegisterView();
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Verification Complete"),
+            ),
+            body: Column(
+              children: [
+                Text("Thank you for verifying your email"),
+                ElevatedButton(
+                  onPressed: () => {
+                    print("Log Out Pressed")
+                  },
+                  child: Text("Log Out"))
+              ],
+            )
+          );
         } else {
           return const VerifyEmailView(); // passing fragment instead of activity
         }
