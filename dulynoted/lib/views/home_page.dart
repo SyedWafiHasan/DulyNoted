@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:dulynoted/firebase_options.dart';
 import 'package:dulynoted/views/login_view.dart';
+import 'package:dulynoted/views/notes_view.dart';
 import 'package:dulynoted/views/register_view.dart';
 import 'package:dulynoted/views/verify_email_view.dart';
 
@@ -14,47 +15,27 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      ),
-
-      // snapshot has status of the Future - none, waiting, active or done
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.done:
-        // return const LoginView();
-        final user = FirebaseAuth.instance.currentUser;
-        final emailVerified = user?.emailVerified ?? false;
-        print(user);
-        print(emailVerified);
-        print(user?.emailVerified);
-        if (emailVerified) {
-          // return const Text("Done");
-        // return const Homepage();
-        // return const LoginView();
-        // return const RegisterView();
-          return Scaffold(
-            appBar: AppBar(
-              title: Text("Verification Complete"),
-            ),
-            body: Column(
-              children: [
-                Text("Thank you for verifying your email"),
-                ElevatedButton(
-                  onPressed: () => {
-                    print("Log Out Pressed")
-                  },
-                  child: Text("Log Out"))
-              ],
-            )
-          );
-        } else {
-          return const VerifyEmailView(); // passing fragment instead of activity
-        }
-          default:
-            return const CircularProgressIndicator();
-        }
-      },
+        future: Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        ),
+        // snapshot has status of the Future - none, waiting, active or done
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              final user = FirebaseAuth.instance.currentUser;
+              if (user != null) {
+                if (user.emailVerified) {
+                  return const NotesView();
+                } else {
+                  return const VerifyEmailView();
+                }
+              } else {
+                return const LoginView();
+              }
+            default:
+              return const CircularProgressIndicator();
+          }
+      }
     );
   }
 }
