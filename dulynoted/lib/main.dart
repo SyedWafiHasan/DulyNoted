@@ -43,15 +43,18 @@ class Homepage extends StatelessWidget {
               case ConnectionState.done:
                 final user = FirebaseAuth.instance.currentUser;
                 final emailVerified = user?.emailVerified ?? false;
-
+                // print(user);
+                // print(emailVerified);
+                // print(user?.emailVerified);
                 if (emailVerified) {
-                  print("Your email has been verified");
+                  return const Text("Done");
+                  // return const Homepage();
+                  // return const LoginView();
+                  // return const RegisterView();
                 } else {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => VerifyEmailView(),
-                  ));
+                  return const VerifyEmailView(); // passing fragment instead of activity
+                  // return const LoginView();
                 }
-                return const Text("Done");
               default:
                 return const Text("Loading...");
             }
@@ -70,19 +73,14 @@ class VerifyEmailView extends StatefulWidget {
 class _VerifyEmailViewState extends State<VerifyEmailView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Verify Email"),
-      ),
-      body: Column(
-        children: [
-          Text("Please verify your email address"),
-          ElevatedButton(onPressed: () async {
-            final user = FirebaseAuth.instance.currentUser;
-            await user?.sendEmailVerification();
-          }, child: const Text("Send Email Verification"))
-        ],
-      ),
+    return Column(
+      children: [
+        Text("Please verify your email address"),
+        ElevatedButton(onPressed: () async {
+          final user = FirebaseAuth.instance.currentUser;
+          await user?.sendEmailVerification();
+        }, child: const Text("Send Email Verification"))
+      ],
     );
   }
 }
