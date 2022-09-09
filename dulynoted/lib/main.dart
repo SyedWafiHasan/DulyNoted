@@ -20,7 +20,8 @@ void main() {
     home: const Homepage(),
     routes: { // routes are also like Intents
       '/login/' : (context) => const LoginView(),
-      '/register/' : (context) => const RegisterView()
+      '/register/' : (context) => const RegisterView(),
+      '/verify/' : (context) => const VerifyEmailView()
     },
   ));
 }
