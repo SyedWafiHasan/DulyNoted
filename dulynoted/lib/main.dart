@@ -1,3 +1,4 @@
+import 'package:dulynoted/views/notes_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,20 +11,23 @@ import 'package:dulynoted/views/home_page.dart';
 void main() {
   //ensures Futures are initialized
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MaterialApp(
-    title: 'Duly Noted',
-    theme: ThemeData(
-      primarySwatch: Colors.teal,
-    ),
-    // home: const RegisterView(),
-    // home: const LoginView(),
-    home: const Homepage(),
-    routes: { // routes are also like Intents
-      '/login/' : (context) => const LoginView(),
-      '/register/' : (context) => const RegisterView(),
-      '/verify/' : (context) => const VerifyEmailView()
-    },
-  ));
+  runApp(
+    MaterialApp(
+      title: 'Duly Noted',
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+      ),
+      // home: const RegisterView(),
+      // home: const LoginView(),
+      home: const Homepage(),
+      routes: { // routes are also like Intents
+        '/login/' : (context) => const LoginView(),
+        '/register/' : (context) => const RegisterView(),
+        '/verify/' : (context) => const VerifyEmailView(),
+        '/notes/' : (context) => const NotesView()
+      },
+    )
+  );
 }
 
 
