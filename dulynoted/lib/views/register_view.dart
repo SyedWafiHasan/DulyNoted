@@ -3,6 +3,7 @@ import 'package:dulynoted/views/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../firebase_options.dart';
+import 'dart:developer' show log;
 
 // creating Stateful RegisterView widget
 // this will be used as the base of our register view
@@ -68,15 +69,16 @@ class _RegisterViewState extends State<RegisterView> {
                 final userAuth = await FirebaseAuth.instance
                     .createUserWithEmailAndPassword(
                         email: email, password: password);
+                log(userAuth.toString());
               } on FirebaseAuthException catch (e) {
                 if (e.code == "email-already-in-use") {
-                  print("User already exists");
+                  log("User already exists");
                 } else if (e.code == "weak-password") {
-                  print("Password Too Weak");
+                  log("Password Too Weak");
                 } else if (e.code == "invalid-email") {
-                  print("Email Invalid");
+                  log("Email Invalid");
                 } else {
-                  print("Caught exception : ${e.code}");
+                  log("Caught exception : ${e.code}");
                 }
               }
             },
