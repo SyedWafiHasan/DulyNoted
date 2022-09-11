@@ -64,8 +64,13 @@ class _LoginViewState extends State<LoginView> {
               try // try block to handle exception if user does not exist
               {
                 // if a Future is returned, you need to use await to get the result
-                final userAuth = await FirebaseAuth.instance
-                    .signInWithEmailAndPassword(email: email, password: password);
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  email: email,
+                  password: password);
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/notes/',
+                  (route) => false,
+                );
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'user-not-found') {
                   log("User Not Found");

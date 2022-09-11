@@ -52,8 +52,8 @@ class _NotesViewState extends State<NotesView> {
         children: [
           ElevatedButton(
             onPressed: () {
-              log("Log out pressed");
-            }, child: const Text("Log Out")
+              log("Button which does nothing and is just a long ass placeholder button to joke around, pressed");
+            }, child: const Text("This button does nothing and is just a long ass placeholder button to joke around")
           ),
         ],
       ),
