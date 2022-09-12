@@ -1,3 +1,4 @@
+import 'package:dulynoted/constants/routes.dart';
 import 'package:dulynoted/views/log_out_dialog.dart';
 import 'package:dulynoted/views/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,7 +32,7 @@ class _NotesViewState extends State<NotesView> {
                   if (shouldLogout) {
                     await FirebaseAuth.instance.signOut();
                     Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/login/',
+                      loginRoute,
                       (_) => false
                     );
                   }
@@ -50,11 +51,7 @@ class _NotesViewState extends State<NotesView> {
       ),
       body: Column(
         children: [
-          ElevatedButton(
-            onPressed: () {
-              log("Button which does nothing and is just a long ass placeholder button to joke around, pressed");
-            }, child: const Text("This button does nothing and is just a long ass placeholder button to joke around")
-          ),
+
         ],
       ),
     );

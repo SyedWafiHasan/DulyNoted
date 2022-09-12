@@ -1,3 +1,4 @@
+import 'package:dulynoted/constants/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -66,9 +67,10 @@ class _LoginViewState extends State<LoginView> {
                 // if a Future is returned, you need to use await to get the result
                 await FirebaseAuth.instance.signInWithEmailAndPassword(
                   email: email,
-                  password: password);
+                  password: password
+                );
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/notes/',
+                  notesRoute,
                   (route) => false,
                 );
               } on FirebaseAuthException catch (e) {
@@ -88,7 +90,7 @@ class _LoginViewState extends State<LoginView> {
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                '/register/',
+                registerRoute,
                 (route) => false,
               );
             },

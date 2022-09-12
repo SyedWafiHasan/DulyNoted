@@ -6,6 +6,7 @@ import 'package:dulynoted/views/login_view.dart';
 import 'package:dulynoted/views/notes_view.dart';
 import 'package:dulynoted/views/register_view.dart';
 import 'package:dulynoted/views/verify_email_view.dart';
+import 'dart:developer' show log;
 
 //Creating a stateless homepage
 
@@ -23,6 +24,8 @@ class Homepage extends StatelessWidget {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               final user = FirebaseAuth.instance.currentUser;
+              print("User : $user");
+              print("User Email Verified : $user.emailVerified");
               if (user != null) {
                 if (user.emailVerified) {
                   return const NotesView();

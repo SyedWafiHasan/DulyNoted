@@ -1,3 +1,4 @@
+import 'package:dulynoted/constants/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:dulynoted/views/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -87,11 +88,11 @@ class _RegisterViewState extends State<RegisterView> {
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).pushNamedAndRemoveUntil(
-                '/login/',
+                loginRoute,
                 (route) => false,
               );
             },
-            child: const Text("Existing user? Log in"))
+            child: const Text("Log in existing user"))
         ],
       ),
     );
