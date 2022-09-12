@@ -1,5 +1,11 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/routes.dart';
+import 'log_out_dialog.dart';
+import 'notes_view.dart';
 
 class VerifyEmailView extends StatefulWidget {
   const VerifyEmailView({Key? key}) : super(key: key);
@@ -14,6 +20,32 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Verify Email"),
+        actions: [
+          PopupMenuButton<MenuAction>(
+            onSelected: (value) async {
+              switch (value) {
+                case MenuAction.logout:
+                  final shouldLogout = await showLogOutDialog(context);
+                  log(shouldLogout.toString());
+                  if (shouldLogout) {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      loginRoute,
+                      (_) => false
+                    );
+                  }
+                break;
+              }
+            }, itemBuilder: (context) {
+            return const [
+              PopupMenuItem<MenuAction>(
+                value: MenuAction.logout,
+                child: Text("Log out"),
+              ),
+            ];
+          },
+          ),
+        ],
       ),
       body: Column(
         children: [

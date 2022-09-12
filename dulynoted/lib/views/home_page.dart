@@ -24,12 +24,15 @@ class Homepage extends StatelessWidget {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               final user = FirebaseAuth.instance.currentUser;
+              print("Reached here");
               print("User : $user");
-              print("User Email Verified : $user.emailVerified");
+              bool? userEmailVerified = user?.emailVerified;
+              print("User Email Verified : $userEmailVerified");
               if (user != null) {
                 if (user.emailVerified) {
                   return const NotesView();
                 } else {
+                  print("Reached here too");
                   return const VerifyEmailView();
                 }
               } else {
