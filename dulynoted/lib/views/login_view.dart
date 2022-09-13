@@ -1,4 +1,5 @@
 import 'package:dulynoted/constants/routes.dart';
+import 'package:dulynoted/utilities/error_dialog.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -75,14 +76,16 @@ class _LoginViewState extends State<LoginView> {
                 );
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'user-not-found') {
-                  log("User Not Found");
+                  await showErrorDialog(context, "This user does not exist.");
                 } else if (e.code == 'wrong-password') {
-                  log("Password Incorrect");
+                  await showErrorDialog(context, "Your credentials are incorrect.");
                 } else if (e.code == 'user-disabled') {
-                  log("Sorry, this user has been disabled.");
+                  await showErrorDialog(context, "This user has been disabled.");
                 } else {
-                  log("Something else happened : ${e.code}");
+                  await showErrorDialog(context, "Error : ${e.code}");
                 }
+              } catch (e) {
+                await showErrorDialog(context, "Error : ${e.toString()}");
               }
             },
             child: const Text("Login"),
