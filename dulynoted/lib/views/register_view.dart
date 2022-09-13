@@ -1,4 +1,5 @@
 import 'package:dulynoted/constants/routes.dart';
+import 'package:dulynoted/utilities/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:dulynoted/views/login_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -68,19 +69,22 @@ class _RegisterViewState extends State<RegisterView> {
               // if a Future is returned, you need to use await to get the result
               try {
                 final userAuth = await FirebaseAuth.instance
-                    .createUserWithEmailAndPassword(
-                        email: email, password: password);
+                  .createUserWithEmailAndPassword(
+                    email: email,
+                    password: password);
                 log(userAuth.toString());
               } on FirebaseAuthException catch (e) {
                 if (e.code == "email-already-in-use") {
-                  log("User already exists");
+                  await showErrorDialog(context, "User already exists.");
                 } else if (e.code == "weak-password") {
-                  log("Password Too Weak");
+                  await showErrorDialog(context, "Your password is too weak.");
                 } else if (e.code == "invalid-email") {
-                  log("Email Invalid");
+                  await showErrorDialog(context, "Invalid Email ID.");
                 } else {
-                  log("Caught exception : ${e.code}");
+                  await showErrorDialog(context, "Error : ${e.code}");
                 }
+              } catch (e) {
+                  await showErrorDialog(context, "Error : ${e.toString()}");
               }
             },
             child: const Text("Register"),
