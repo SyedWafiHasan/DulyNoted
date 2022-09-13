@@ -51,7 +51,7 @@ class _NotesViewState extends State<NotesView> {
       ),
       body: Column(
         children: [
-
+          const CircularProgressIndicator()
         ],
       ),
     );
