@@ -68,11 +68,14 @@ class _RegisterViewState extends State<RegisterView> {
 
               // if a Future is returned, you need to use await to get the result
               try {
-                final userAuth = await FirebaseAuth.instance
+                await FirebaseAuth.instance
                   .createUserWithEmailAndPassword(
                     email: email,
                     password: password);
-                log(userAuth.toString());
+                final user = FirebaseAuth.instance.currentUser;
+                await user?.sendEmailVerification();
+                Navigator.of(context).pushNamed(verifyRoute);
+
               } on FirebaseAuthException catch (e) {
                 if (e.code == "email-already-in-use") {
                   await showErrorDialog(context, "User already exists.");

@@ -31,7 +31,6 @@ class Homepage extends StatelessWidget {
                 if (user.emailVerified) {
                   return const NotesView();
                 } else {
-                  log("Reached here too");
                   return const VerifyEmailView();
                 }
               } else {
