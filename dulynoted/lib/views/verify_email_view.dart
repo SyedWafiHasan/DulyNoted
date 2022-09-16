@@ -63,7 +63,7 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
             onPressed:  () async {
               await FirebaseAuth.instance.signOut();
               Navigator.of(context).pushNamedAndRemoveUntil(
-                registerRoute,
+                loginRoute,
                 (route) => false,
               );
             },
