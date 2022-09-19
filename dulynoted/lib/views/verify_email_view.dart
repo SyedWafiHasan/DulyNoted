@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/routes.dart';
-import '../utilities/log_out_dialog.dart';
+import 'package:dulynoted/constants/routes.dart';
+import 'package:dulynoted/utilities/log_out_dialog.dart';
+import 'package:dulynoted/enums/menu_action.dart';
+
 import 'notes_view.dart';
 
 class VerifyEmailView extends StatefulWidget {
