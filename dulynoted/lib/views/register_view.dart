@@ -1,11 +1,6 @@
 import 'package:dulynoted/constants/routes.dart';
 import 'package:dulynoted/utilities/error_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:dulynoted/views/login_view.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import '../firebase_options.dart';
-import 'dart:developer' show log;
 
 // creating Stateful RegisterView widget
 // this will be used as the base of our register view
