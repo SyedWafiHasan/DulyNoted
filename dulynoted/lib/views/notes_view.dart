@@ -1,7 +1,6 @@
 import 'package:dulynoted/constants/routes.dart';
 import 'package:dulynoted/utilities/log_out_dialog.dart';
 import 'package:dulynoted/views/login_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dulynoted/enums/menu_action.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' show log;

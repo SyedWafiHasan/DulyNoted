@@ -1,13 +1,9 @@
-import 'dart:developer';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dulynoted/constants/routes.dart';
 import 'package:dulynoted/utilities/log_out_dialog.dart';
 import 'package:dulynoted/enums/menu_action.dart';
-
-import 'notes_view.dart';
+import 'dart:developer';
 
 class VerifyEmailView extends StatefulWidget {
   const VerifyEmailView({Key? key}) : super(key: key);
