@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:dulynoted/services/auth/auth_service.dart';
 import 'package:dulynoted/constants/routes.dart';
 import 'package:dulynoted/utilities/log_out_dialog.dart';
 import 'package:dulynoted/enums/menu_action.dart';
-import 'dart:developer' show log;
 
 class VerifyEmailView extends StatefulWidget {
   const VerifyEmailView({Key? key}) : super(key: key);
@@ -23,9 +23,8 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
               switch (value) {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
-                  log(shouldLogout.toString());
                   if (shouldLogout) {
-                    await FirebaseAuth.instance.signOut();
+                    await AuthService.firebase().logOut();
                     Navigator.of(context).pushNamedAndRemoveUntil(
                       loginRoute,
                       (_) => false
@@ -51,20 +50,19 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
           const Text("If you still haven't received an email, press the button below."),
           ElevatedButton(
             onPressed: () async {
-              final user = FirebaseAuth.instance.currentUser;
-              await user?.sendEmailVerification();
+              await AuthService.firebase().sendEmailVerification();
             },
             child: const Text("Send Email Verification")
           ),
           ElevatedButton(
             onPressed:  () async {
-              await FirebaseAuth.instance.signOut();
+              await AuthService.firebase().logOut();
               Navigator.of(context).pushNamedAndRemoveUntil(
                 loginRoute,
                 (route) => false,
               );
             },
-            child: const Text("Refresh")
+            child: const Text("Restart")
           )
         ],
       ),
