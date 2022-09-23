@@ -48,7 +48,6 @@ class DatabaseNote {
   @override bool operator ==(covariant DatabaseUser other) => id == other.id;
 
   @override
-  // TODO: implement hashCode
   int get hashCode => id.hashCode;
 }
 
