@@ -18,6 +18,35 @@ class UserDoesNotExistException implements Exception {}
 class NotesService {
   Database? _db;
 
+  Future<DatabaseNote> createNote({required DatabaseUser owner}) async {
+    final db = _getDatabaseOrThrow();
+
+    // making sure owner exists in db with correct id
+
+    final dbUser = await getUser(email: owner.email);
+    if (dbUser != owner) {
+      throw UserDoesNotExistException();
+    }
+
+    const text = '';
+
+    // create the note
+    final noteId = await db.insert(noteTable, {
+      userIdColumn: owner.id,
+      textColumn: text,
+      isSyncedWithCloudColumn: 1,
+    });
+
+    final note = DatabaseNote(
+      id: noteId,
+      userId: owner.id,
+      text: text,
+      isSyncedWithCloud: true,
+    );
+
+    return note;
+  }
+
   Future<DatabaseUser> getUser({required String email}) async {
     final db = _getDatabaseOrThrow();
 
