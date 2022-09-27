@@ -3,6 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' show join;
 import 'package:dulynoted/services/crud/crud_exceptions.dart';
+import 'package:dulynoted/constants/database_constants.dart';
 
 class NotesService {
   Database? _db;
@@ -225,31 +226,3 @@ class DatabaseNote {
   @override
   int get hashCode => id.hashCode;
 }
-
-const dbName = 'notes.db';
-const noteTable = 'note';
-const userTable = 'user';
-const idColumn = 'id';
-const emailColumn = 'email';
-const userIdColumn = 'user_id';
-const textColumn = 'text';
-const isSyncedWithCloudColumn = 'is_synced_with_cloud';
-
-const createUserTable = '''
-  create table if not exists user (
-  'id' integer not null unique,
-  'email' text not null unique,
-  primary key ('id' autoincrement)
-  );
-''';
-
-const createNoteTable = '''
-  create table if not exists note (
-  'id' integer not null unique,
-  'user_id' integer not null,
-  'text' text,
-  'is_synced_with_cloud' integer default 0,
-  foreign key ('user_id') references "user"("id"),
-  primary key ('id' autoincrement)
-  );
-''';
