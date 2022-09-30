@@ -7,10 +7,18 @@ import 'package:dulynoted/services/crud/crud_exceptions.dart';
 import 'package:dulynoted/constants/database_constants.dart';
 
 class NotesService {
+
+  // making NotesService a singleton
+  static final NotesService _shared = NotesService._sharedInstance();
+  NotesService._sharedInstance();
+  factory NotesService() => _shared;
+
   Database? _db;
   List<DatabaseNote> _notes = [];
 
   final _notesStreamController = StreamController<List<DatabaseNote>>.broadcast();
+
+  Stream<List<DatabaseNote>> get allNotes => _notesStreamController.stream;
 
   Future<void> _cacheNotes() async {
     final allNotes = await getAllNotes();
