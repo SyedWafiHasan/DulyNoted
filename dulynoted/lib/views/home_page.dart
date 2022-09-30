@@ -1,7 +1,7 @@
 import 'package:dulynoted/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:dulynoted/views/login_view.dart';
-import 'package:dulynoted/views/notes_view.dart';
+import 'package:dulynoted/views/notes/notes_view.dart';
 import 'package:dulynoted/views/verify_email_view.dart';
 
 //Creating a stateless homepage
