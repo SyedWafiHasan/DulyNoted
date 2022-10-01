@@ -5,6 +5,7 @@ import 'package:dulynoted/views/register_view.dart';
 import 'package:dulynoted/views/verify_email_view.dart';
 import 'package:dulynoted/views/home_page.dart';
 import 'package:dulynoted/constants/routes.dart';
+import 'package:dulynoted/views/notes/new_note_view.dart';
 
 void main() {
   //ensures Futures are initialized
@@ -22,7 +23,8 @@ void main() {
         loginRoute : (context) => const LoginView(),
         registerRoute : (context) => const RegisterView(),
         verifyRoute : (context) => const VerifyEmailView(),
-        notesRoute : (context) => const NotesView()
+        notesRoute : (context) => const NotesView(),
+        newNotesRoute : (context) => const NewNoteView(),
       },
     )
   );
