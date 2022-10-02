@@ -14,7 +14,7 @@ class _NewNoteViewState extends State<NewNoteView> {
       appBar: AppBar(
         title: const Text("New Note"),
       ),
-      body: const Text("Write your note here..."),
+      body: const Text("Write your new note here..."),
     );
   }
 }
