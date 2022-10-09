@@ -43,7 +43,10 @@ class _NewNoteViewState extends State<NewNoteView> {
 
   @override
   void dispose() {
-
+    _deleteNoteIfTextIsEmpty();
+    _saveNoteIfTextIsNotEmpty();
+    _textEditingController.dispose();
+    super.dispose();
   }
 
 
