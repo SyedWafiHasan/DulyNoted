@@ -8,15 +8,21 @@ import 'package:dulynoted/constants/database_constants.dart';
 
 class NotesService {
 
-  // making NotesService a singleton
-  static final NotesService _shared = NotesService._sharedInstance();
-  NotesService._sharedInstance();
-  factory NotesService() => _shared;
-
   Database? _db;
   List<DatabaseNote> _notes = [];
 
-  final _notesStreamController = StreamController<List<DatabaseNote>>.broadcast();
+  // making NotesService a singleton
+  static final NotesService _shared = NotesService._sharedInstance();
+  NotesService._sharedInstance() {
+    _notesStreamController = StreamController<List<DatabaseNote>>.broadcast(
+      onListen: () {
+        _notesStreamController.sink.add(_notes);
+      },
+    );
+  }
+  factory NotesService() => _shared;
+
+  late final StreamController<List<DatabaseNote>> _notesStreamController;
 
   Stream<List<DatabaseNote>> get allNotes => _notesStreamController.stream;
 
@@ -52,9 +58,8 @@ class NotesService {
     await _ensureDbIsOpen();
     final db = _getDatabaseOrThrow();
     final notes = await db.query(noteTable);
-    final result = notes.map((noteRow) => DatabaseNote.fromRow(noteRow));
 
-    return result;
+    return notes.map((noteRow) => DatabaseNote.fromRow(noteRow));
   }
 
   Future<DatabaseNote> getNote({required int id}) async {
